@@ -18,10 +18,16 @@ class GOLEM():
         self.LAMBDA = LAMBDA
 
     ### OBJECTIVE FUNCTIONS
-    def least_squares(self, W):
-        R = self.X - self.X @ W
+    def gaussian_MLE(self, W):
+        n = self.n
+        d = self.dim
 
-        return (1 / (2 * self.n) * (R ** 2).sum())
+        R = self.X - self.X @ W
+        least_squares = 1 / (2 * self.n) * (R ** 2).sum()
+
+        det_term = np.log(np.linalg.det(np.identity(d) - W))
+
+        return (d/2 * np.log(least_squares) - det_term + d/2 * (np.log(2*n)))
 
     def l1_pen(self, W):
         return np.abs(W).sum()
@@ -32,11 +38,8 @@ class GOLEM():
         return np.trace(expm(W_squared)) - self.dim
 
     def cost_function(self, W):
-        n = W.shape[0]
-        d = W.shape[1]
-        det_term = np.log(np.linalg.det(np.identity(d) - W))
 
-        return d/2 * np.log(self.least_squares(W)) - det_term + d/2 * (np.log(2*n)) + self.LAMBDA * self.l1_pen(W)
+        return (self.gaussian_MLE(W) + self.LAMBDA * self.l1_pen(W))
 
 
 

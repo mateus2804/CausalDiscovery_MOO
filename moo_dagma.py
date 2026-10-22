@@ -54,13 +54,16 @@ class DAGMA_multioo(ElementwiseProblem):
         super().__init__(
         n_var = self.dim**2,
         n_obj = 2,
-        n_ieq_constr = 0,
+        n_ieq_constr = 1,
         xl = lower_bounds,
         xu = upper_bounds
         )
         
     def _evaluate(self, x, out, *args, **kwargs):
         x = x.reshape(self.dim, self.dim)
+
+        rho = np.max(np.abs(np.linalg.eigvals(x * x)))
+        out["G"] = [rho - 1 + 1e-6]   
 
         f1 = self.dagma.cost_function(x)
         f2 = self.dagma.acyclic_restriction(x)
