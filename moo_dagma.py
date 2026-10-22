@@ -29,7 +29,7 @@ class DAGMA():
     def acyclic_restriction(self, W, s=1):
         W_squared = W * W
         M = s * np.identity(self.dim) - W_squared
-        h = - np.linalg.slogdet(M)[1] + self.dim * np.log(s)
+        h = - np.log(np.linalg.det(M)) + self.dim * np.log(s)
 
         return h
 
