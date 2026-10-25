@@ -14,7 +14,7 @@ Ao invés de tratar a penalidade de aciclicidade $h(W) = 0$ e a esparsidade (ex:
 
 As seguintes abordagens clássicas (versões lineares) estão implementadas e servem como *baselines*:
 
-*   **NOTEARS** (Zheng et al., 2018): Transforma a busca combinatória por DAGs em otimização contínua usando o traço da matriz exponencial: $h(W) = \text{tr}(e^{W \circ W}) - d = 0$.
+*   **NOTEARS** (Zheng et al., 2018): Transforma a busca combinatória por DAGs em otimização contínua usando o traço da matriz exponencial: $h(W) = \text{tr}(e^{W \circ W}) - d = 0$. Otimiza com L-BFGS e soluciona vários subproblemas com Lagrange aumentado.
 *   **GOLEM** (Ng et al., 2020): Relaxa a restrição rígida (hard constraint) do NOTEARS, focando em otimização sem restrições baseada em *likelihood* com penalização suave, reduzindo problemas de otimização em paisagens mal condicionadas.
 *   **DAGMA** (Bello et al., 2022): Utiliza uma caracterização baseada em log-determinante para aciclicidade, oferecendo gradientes mais bem comportados e convergência superior às formulações baseadas no traço da exponencial.
 
