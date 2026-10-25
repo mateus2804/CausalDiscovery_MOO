@@ -29,6 +29,6 @@ A expansão do repositório contrapõe os métodos acima a algoritmos de otimiza
 Clone este repositório e instale as dependências. Recomenda-se o uso de um ambiente virtual (Conda ou venv).
 
 ```bash
-git clone [https://github.com/seu-usuario/causal-discovery-optimization.git](https://github.com/seu-usuario/causal-discovery-optimization.git)
-cd causal-discovery-optimization
+git clone https://github.com/mateus2804/CausalDiscovery_MOO.git
+cd CausalDiscovery_MOO
 pip install -r requirements.txt
